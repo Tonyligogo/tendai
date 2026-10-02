@@ -1,20 +1,34 @@
-import type { Product } from "@/lib/products";
-import { createContext, useContext } from "react";
+"use client";
 
-export type CartLine = { product: Product; quantity: number };
+import type { Product } from "@/lib/products";
+import {
+  createContext,
+  useContext,
+  type Dispatch,
+  type SetStateAction,
+} from "react";
+
+export type CartLine = {
+  product: Product;
+  quantity: number;
+};
 
 export type StoreState = {
   cart: CartLine[];
-  addToCart: (product: Product) => void;
-  changeQuantity: (id: string, delta: number) => void;
   cartOpen: boolean;
-  setCartOpen: (open: boolean) => void;
+  addToCart: (product: Product) => void;
+  changeQuantity: (productId: string, delta: number) => void;
+  setCartOpen: Dispatch<SetStateAction<boolean>>;
 };
 
 export const StoreContext = createContext<StoreState | undefined>(undefined);
 
 export function useStore() {
   const context = useContext(StoreContext);
-  if (!context) throw new Error("useStore must be used within StoreProvider");
+
+  if (context === undefined) {
+    throw new Error("useStore must be used within a StoreProvider");
+  }
+
   return context;
 }

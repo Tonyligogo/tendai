@@ -13,10 +13,6 @@ import {
   Sparkles,
   Truck,
 } from "lucide-react";
-import heroImage from "/tendai-hero.jpg";
-import productsImage from "/tendai-products.jpg";
-import lifestyleImage from "/tendai-lifestyle.jpg";
-import craftImage from "/tendai-craft.jpg";
 import { Button } from "@/components/ui/button";
 import { formatKES, products } from "@/lib/products";
 import Link from "next/link";
@@ -52,12 +48,14 @@ export default function HomePage() {
   return (
     <main className="overflow-hidden bg-background">
       <section className="relative min-h-[calc(100svh-7rem)] overflow-hidden bg-brand-green text-brand-cream">
-        <Image
-          src="/tendai-hero.jpg"
-          alt="Woman carrying a Tendai handcrafted tote in Nairobi"
-          priority
-          className="absolute inset-0 h-full w-full object-cover object-center motion-safe:animate-slow-zoom"
-        />
+         <Image
+            src="/tendai-hero.jpg"
+            alt="Woman carrying a Tendai handcrafted tote in Nairobi"
+            fill
+            priority
+            sizes="100vw"
+            className="object-cover object-center motion-safe:animate-slow-zoom"
+          />
         <div className="absolute inset-0 bg-gradient-to-r from-brand-green/90 via-brand-green/40 to-transparent" />
         <div className="relative mx-auto flex min-h-[calc(100svh-7rem)] max-w-[1440px] items-end px-6 pb-16 pt-36 md:items-center md:pb-24 lg:px-10">
           <div className="max-w-2xl animate-fade-in">
@@ -236,11 +234,13 @@ export default function HomePage() {
       </section>
 
       <section className="relative min-h-[76svh] overflow-hidden">
-        <Image
-          src="/tendai-lifestyle.jpg"
-          alt="Friends carrying Tendai bags at a Nairobi cafe"
-          className="absolute inset-0 h-full w-full object-cover motion-safe:animate-slow-zoom"
-        />
+         <Image
+    src="/tendai-lifestyle.jpg"
+    alt="Friends carrying Tendai bags at a Nairobi cafe"
+    fill
+    sizes="100vw"
+    className="object-cover motion-safe:animate-slow-zoom"
+  />
         <div className="absolute inset-0 bg-brand-green/30" />
         <div className="relative mx-auto flex min-h-[76svh] max-w-[1440px] items-end px-6 py-16 lg:px-10">
           <h2 className="max-w-3xl font-display text-5xl leading-[0.95] text-brand-cream sm:text-7xl">
@@ -294,6 +294,9 @@ export default function HomePage() {
             <Image
               src="/tendai-craft.jpg"
               alt="Tendai artisan hand stitching leather"
+              width={1000}
+              height={1200}
+              sizes="(max-width: 1024px) 100vw, 55vw"
               className="aspect-[5/6] w-full object-cover"
             />
 
@@ -301,6 +304,9 @@ export default function HomePage() {
             <Image
               src="/tendai-products.jpg"
               alt="Finished Tendai bags"
+              width={800}
+              height={800}
+              sizes="(max-width: 1024px) 42vw, 22vw"
               className="absolute bottom-0 right-0 aspect-square w-[42%] border-8 border-brand-cream object-cover"
               style={{ objectPosition: "72% 36%" }}
             />
@@ -354,6 +360,9 @@ export default function HomePage() {
         <Image
           src="/tendai-craft.jpg"
           alt="African print fabric and leather craftsmanship"
+          width={1200}
+          height={1400}
+          sizes="(max-width: 1024px) 100vw, 50vw"
           className="h-full min-h-[560px] w-full object-cover"
         />
       </section>
@@ -374,11 +383,14 @@ export default function HomePage() {
                 className="group relative aspect-[4/5] overflow-hidden md:aspect-auto md:min-h-[620px]"
               >
                 <Image
-                    src="/tendai-lifestyle.jpg"
-                    alt={look.name}
-                    className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
-                    style={{ objectPosition: look.position }}
-                  />
+                  src="/tendai-lifestyle.jpg"
+                  alt={look.name}
+                  width={1000}
+                  height={1250}
+                  sizes="(max-width: 768px) 100vw, 50vw"
+                  className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
+                  style={{ objectPosition: look.position }}
+                />
                 <div
                   className={`absolute ${index ? "bottom-[20%] left-[18%]" : "bottom-[17%] left-[42%]"}`}
                 >
@@ -454,6 +466,9 @@ export default function HomePage() {
                   <Image
                     src={image}
                     alt="Tendai Treasure Craft journal"
+                    width={800}
+                    height={800}
+                    sizes="(max-width: 768px) 50vw, 25vw"
                     className="aspect-square h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
                   />
                 </div>
@@ -496,7 +511,7 @@ export default function HomePage() {
           </form>
         </div>
       </section>
-      <SiteFooter />
+      {/* <SiteFooter /> */}
     </main>
   );
 }

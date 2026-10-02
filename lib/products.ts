@@ -1,6 +1,3 @@
-import productsImage from "/tendai-products.jpg";
-import craftImage from "./tendai-craft.jpg";
-import { StaticImageData } from "next/image";
 
 export type Product = {
   id: string;
