@@ -4,6 +4,7 @@ import { useState } from "react";
 import { Button } from "./ui/button";
 import { Heart, Plus } from "lucide-react";
 import { cn } from "cn";
+import Link from "next/link";
 
 /* eslint-disable @next/next/no-img-element */
 export function ProductCard({
@@ -16,8 +17,9 @@ export function ProductCard({
   const { addToCart } = useStore();
   const [liked, setLiked] = useState(false);
   return (
+    <Link href={`/shop/${product.id}`}>
     <article className="product-card group min-w-0">
-      <div className="relative aspect-[4/5] overflow-hidden bg-brand-beige">
+      <div className="relative aspect-4/5 overflow-hidden bg-brand-beige">
         <img
           src={product.image}
           alt={product.name}
@@ -64,6 +66,7 @@ export function ProductCard({
           </Button>
         )}
       </div>
+      <>
       <div className="flex items-start justify-between gap-4 pt-4">
         <div>
           <h3 className="font-display text-xl text-brand-green">
@@ -82,6 +85,9 @@ export function ProductCard({
           )}
         </div>
       </div>
+      
+      </>
     </article>
+    </Link>
   );
 }

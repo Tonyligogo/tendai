@@ -9,15 +9,12 @@ import {
   Gem,
   Hammer,
   PackageCheck,
-  ShieldCheck,
   Sparkles,
-  Truck,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { formatKES, products } from "@/lib/products";
 import Link from "next/link";
 import { ProductCard } from "@/components/product-card";
-import { SiteFooter } from "@/components/footer";
 import Image from "next/image";
 
 const collections = [
@@ -56,8 +53,8 @@ export default function HomePage() {
             sizes="100vw"
             className="object-cover object-center motion-safe:animate-slow-zoom"
           />
-        <div className="absolute inset-0 bg-gradient-to-r from-brand-green/90 via-brand-green/40 to-transparent" />
-        <div className="relative mx-auto flex min-h-[calc(100svh-7rem)] max-w-[1440px] items-end px-6 pb-16 pt-36 md:items-center md:pb-24 lg:px-10">
+        <div className="absolute inset-0 bg-linear-to-r from-brand-green/90 via-brand-green/40 to-transparent" />
+        <div className="relative mx-auto flex min-h-[calc(100svh-7rem)] max-w-360 items-end px-6 pb-16 pt-36 md:items-center md:pb-24 lg:px-10">
           <div className="max-w-2xl animate-fade-in">
             <p className="mb-5 flex items-center gap-3 text-[11px] font-bold uppercase tracking-[0.24em] text-brand-gold">
               <span className="h-px w-12 bg-brand-gold" />
@@ -77,7 +74,7 @@ export default function HomePage() {
                 size="lg"
                 className="h-12 bg-brand-gold px-7 text-brand-green hover:bg-brand-gold-light"
               >
-                <Link href="/shop">
+                <Link href="/shop" className="">
                   Shop bags <ArrowRight />
                 </Link>
               </Button>
@@ -411,14 +408,12 @@ export default function HomePage() {
       </section>
 
       <section className="border-y border-brand-brown/10 bg-brand-cream px-5 py-16 lg:px-10">
-        <div className="mx-auto grid max-w-[1440px] grid-cols-2 gap-x-4 gap-y-10 md:grid-cols-3 lg:grid-cols-6">
+        <div className="mx-auto grid max-w-360 grid-cols-2 gap-x-4 gap-y-10 md:grid-cols-3 lg:grid-cols-6">
           {[
             [Hammer, "Handcrafted Quality"],
             [PackageCheck, "Durable Materials"],
             [Sparkles, "Unique African Prints"],
-            [Gem, "Everyday Design"],
-            [ShieldCheck, "Secure Payments"],
-            [Truck, "Reliable Delivery"],
+            [Gem, "Everyday Design"]
           ].map(([Icon, label]) => {
             const BenefitIcon = Icon as typeof Hammer;
             return (
@@ -449,7 +444,7 @@ export default function HomePage() {
       </section>
 
       <section className="bg-brand-cream px-5 py-24 lg:px-10">
-        <div className="mx-auto max-w-[1440px]">
+        <div className="mx-auto max-w-360">
           <div className="mb-9 flex items-end justify-between">
             <div>
               <p className="eyebrow">@tendaitreasurecraft</p>
@@ -511,7 +506,6 @@ export default function HomePage() {
           </form>
         </div>
       </section>
-      {/* <SiteFooter /> */}
     </main>
   );
 }

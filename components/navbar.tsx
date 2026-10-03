@@ -1,24 +1,35 @@
 /* eslint-disable @next/next/no-img-element */
-'use client';
+"use client";
 
 import Link from "next/link";
 import { Button } from "./ui/button";
-import { Sheet, SheetContent, SheetDescription, SheetHeader, SheetTitle, SheetTrigger } from "./ui/sheet";
-import { Menu, Minus, Plus, Search, ShoppingBag, Trash2 } from "lucide-react";
+import {
+  Sheet,
+  SheetContent,
+  SheetDescription,
+  SheetHeader,
+  SheetTitle,
+  SheetTrigger,
+} from "./ui/sheet";
+import { Menu, Minus, Plus, ShoppingBag, Trash2 } from "lucide-react";
 import { BrandMark } from "./brand-mark";
 import { useStore } from "@/context/useStore";
 import { formatKES } from "@/lib/products";
 import { usePathname } from "next/navigation";
+import { useState } from "react";
 
 export function Navbar() {
   const { cart, cartOpen, setCartOpen, changeQuantity } = useStore();
   const pathname = usePathname();
 
+  const [mobileOpen, setMobileOpen] = useState(false);
+
   const navLinks = [
-    { name: 'Home', href: '/' },
-    { name: 'Shop', href: '/shop' },
-    { name: 'Collections', href: '/collections' },
-    { name: 'Contact', href: '/contact' },
+    { name: "Home", href: "/" },
+    { name: "Shop", href: "/shop" },
+    { name: "Collections", href: "/#collections" },
+    { name: "Our Story", href: "/#story" },
+    { name: "Contact", href: "/#contact" },
   ];
   const count = cart.reduce((total, line) => total + line.quantity, 0);
   const subtotal = cart.reduce(
@@ -28,34 +39,26 @@ export function Navbar() {
   return (
     <>
       <div className="bg-brand-gold px-4 py-2 text-center text-[10px] font-semibold uppercase tracking-[0.2em] text-brand-green">
-        Handcrafted bags for everyday living · Nationwide delivery
+        Handcrafted bags for everyday living
       </div>
       <header className="sticky top-0 z-40 border-b border-brand-gold/20 bg-brand-green/95 text-brand-cream backdrop-blur-md">
-        <div className="mx-auto flex h-20 max-w-[1440px] items-center justify-between px-5 lg:px-10">
+        <div className="mx-auto flex h-20 max-w-360 items-center justify-between px-5 lg:px-10">
           <BrandMark />
           <nav
             className="hidden items-center gap-8 text-xs font-semibold uppercase tracking-[0.14em] lg:flex"
             aria-label="Main navigation"
           >
-            {navLinks.map((link) => (
+            {navLinks.map((link, index) => (
               <Link
-                key={link.name}
+                key={index}
                 href={link.href}
-                className={`transition-colors hover:text-brand-gold-light ${pathname === link.href ? 'text-brand-gold-light' : ''}`}
+                className={`transition-colors hover:text-brand-gold-light ${pathname === link.href ? "text-brand-gold-light" : ""}`}
               >
                 {link.name}
               </Link>
             ))}
           </nav>
           <div className="flex items-center gap-1">
-            <Button
-              variant="ghost"
-              size="icon"
-              className="hidden text-brand-cream hover:bg-brand-green-light hover:text-brand-gold sm:inline-flex"
-              aria-label="Search"
-            >
-              <Search />
-            </Button>
             <Button
               variant="ghost"
               size="icon"
@@ -70,16 +73,9 @@ export function Navbar() {
                 </span>
               )}
             </Button>
-            <Sheet>
+            <Sheet open={mobileOpen} onOpenChange={setMobileOpen}>
               <SheetTrigger>
-                <Button
-                  variant="ghost"
-                  size="icon"
-                  className="text-brand-cream hover:bg-brand-green-light hover:text-brand-gold lg:hidden"
-                  aria-label="Open menu"
-                >
                   <Menu />
-                </Button>
               </SheetTrigger>
               <SheetContent
                 side="left"
@@ -89,16 +85,23 @@ export function Navbar() {
                   <SheetTitle className="text-left font-display text-3xl text-brand-cream">
                     Tendai
                   </SheetTitle>
+
                   <SheetDescription className="text-left text-brand-gold-light">
                     Treasure Craft
                   </SheetDescription>
                 </SheetHeader>
-                <nav className="mt-12 flex flex-col gap-7 font-display text-3xl">
-                  <Link href="/">Home</Link>
-                  <Link href="/shop">Shop</Link>
-                  <Link href="/#collections">Collections</Link>
-                  <Link href="/#story">Our Story</Link>
-                  <Link href="#contact">Contact</Link>
+
+                <nav className="ml-4 mt-12 flex flex-col gap-7 font-display text-3xl">
+                  {navLinks.map((link,index) => (
+                    <Link
+                      key={index}
+                      href={link.href}
+                      onClick={() => setMobileOpen(false)}
+                      className="transition-colors hover:text-brand-gold"
+                    >
+                      {link.name}
+                    </Link>
+                  ))}
                 </nav>
               </SheetContent>
             </Sheet>
@@ -125,9 +128,7 @@ export function Navbar() {
                 <p className="mt-2 text-sm text-muted-foreground">
                   Choose something made to move with you.
                 </p>
-                <Button
-                  className="mt-6 bg-brand-green text-brand-cream hover:bg-brand-green-light"
-                >
+                <Button className="mt-6 bg-brand-green text-brand-cream hover:bg-brand-green-light">
                   <Link href="/shop" onClick={() => setCartOpen(false)}>
                     Explore the collection
                   </Link>
@@ -191,9 +192,6 @@ export function Navbar() {
               <Button className="h-12 w-full bg-brand-green text-brand-cream hover:bg-brand-green-light">
                 Proceed to checkout
               </Button>
-              <p className="mt-3 text-center text-xs text-muted-foreground">
-                Delivery calculated at checkout
-              </p>
             </div>
           )}
         </SheetContent>

@@ -6,7 +6,7 @@ import { BrandMark } from "./brand-mark";
 export function SiteFooter() {
   return (
     <footer id="contact" className="bg-brand-green-dark text-brand-cream">
-      <div className="mx-auto grid max-w-[1440px] gap-12 px-6 py-16 md:grid-cols-[1.4fr_1fr_1fr] lg:px-10">
+      <div className="mx-auto grid max-w-360 gap-12 px-6 py-16 md:grid-cols-[1.4fr_1fr_1fr] lg:px-10">
         <div>
           <BrandMark />
           <p className="mt-6 max-w-sm text-sm leading-7 text-brand-cream/70">
@@ -22,7 +22,6 @@ export function SiteFooter() {
             <Link href="/shop">Shop all</Link>
             <Link href="/#collections">Collections</Link>
             <Link href="/#story">Our story</Link>
-            <span>Delivery & returns</span>
           </div>
         </div>
         <div>
@@ -33,7 +32,7 @@ export function SiteFooter() {
             <a href="mailto:hello@tendaitreasure.co.ke">
               hello@tendaitreasure.co.ke
             </a>
-            <a href="tel:+254700000000">+254 700 000 000</a>
+            <a href="tel:0180313816">0180 313 816</a>
             <span>Nairobi, Kenya</span>
           </div>
         </div>
