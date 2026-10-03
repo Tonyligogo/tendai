@@ -251,6 +251,7 @@ export default function ProductPage({
             <Button
               variant="link"
               className="hidden text-brand-green md:inline-flex"
+              nativeButton={false}
               render={<Link href="/shop" />}
             >
               View all

@@ -208,10 +208,8 @@ export default function ShopPage() {
             </p>
             <div className="flex items-center gap-3">
               <Sheet>
-                <SheetTrigger>
-                  <Button variant="outline" className="lg:hidden">
+                <SheetTrigger className="lg:hidden">
                     <SlidersHorizontal /> Filters
-                  </Button>
                 </SheetTrigger>
                 <SheetContent side="left" className="bg-brand-cream">
                   <SheetHeader className="mb-8 text-left">
